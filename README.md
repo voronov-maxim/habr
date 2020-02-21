@@ -3,7 +3,7 @@
 
 TsToOdata библиотека для TypeScript явлется подобием LINQ для C#, но в отличии от последнего предназначено только для запросов OData. Для разработчика, который создает запросы, наиболее очевидной частью TsToOdata является интегрированное выражение запроса. Выражения запроса используют декларативный синтаксис запроса. С помощью синтаксиса запроса можно выполнять фильтрацию, упорядочение и группирование данных из источника данных, обходясь минимальным объемом программного кода.
 
-### Создание модели данных ###  
+#### Создание модели данных ####  
 Первым делом нам надо получить отображение схемы OData на классы TypeScript. 
 Первым шагом потребуется сначала получить из EDMX Json схему. Для этого можно воспользоваться библиотекой [OdataToEntity](https://github.com/voronov-maxim/OdataToEntity/wiki/Json-schema).
 ```cs
@@ -27,7 +27,7 @@ using (var utf8Json = new MemoryStream())
 npm install ts2odata
 ```
 
-####Создание контекста доступа к данным####
+#### Создание контекста доступа к данным ####  
 ```javascript
 import { EntitySet, OdataContext } from 'ts2odata';
 import * as oe from './order';
@@ -44,7 +44,7 @@ export class OrderContext extends OdataContext<OrderContext> {
 let context: OrderContext = OdataContext.create(OrderContext, 'http://localhost:5000/api');
 ```
 
-####Примеры запросов####
+#### Примеры запросов ####  
 Получить все записи в таблицы
 ```javascript
 context.Orders;
@@ -169,7 +169,7 @@ context.Orders(o => o.AltCustomer).thenSelect(o => {{
 
 Следует заметить что методы *select*, *expand*, *groupby* изменяют контекст, их результатом становиться новый тип и что бы продолжить выполнение в этом новом контексте нужно использовать методы с приставкой *then*: *thenFilter*, *thenExpand*, *thenSelect*, *thenOrderby*, *thenOrderbyDescending*, *thenSkip*, *thenTop*. Методы *select* и *thenSelect* необратимо меняют контекст и чтобы вернуться к родительскому контексту надо применить метод *asEntitySet*.
 
-####Параметризация запросов####
+#### Параметризация запросов ####  
 Запросы фильтрации - *filter*, выборки - *select*, групировки - *groupby* можно параметризировать, имена свойств объекта параметризации должны совпадать с именами переменных в коде запроса.
 ```javascript
 let count: number | null = null;
@@ -197,7 +197,7 @@ let s = {
 context.Orders.filter(o => o.AltCustomerId == s.altCustomerId && o.CustomerId == s.customerId && (o.Date.getFullYear() == s.dateYear && o.Date.getMonth() > s.dateMonth && o.Date.getDay() < s.dateDay || o.Date == s.date) && o.Name.includes(s.name) && o.Status == s.status, s).expand(o => o.Items).thenFilter(i => (i.Count == s.count1 || i.Count == s.count2) && (i.Price == s.price1 || i.Price == s.price2) && (i.Product.includes(s.product1) || i.Product.includes(s.product2)) && i.OrderId > s.orderId && i.Id != s.id, s);
 //http://localhost:5000/api/Orders?$filter=AltCustomerId eq 3 and CustomerId eq 4 and (year(Date) eq 2016 and month(Date) gt 11 and day(Date) lt 20 or Date eq null) and contains(Name,'unknown') and Status eq OdataToEntity.Test.Model.OrderStatus'Unknown'&$expand=Items($filter=(Count eq 0 or Count eq null) and (Price eq 0 or Price eq null) and (contains(Product,'unknown') or contains(Product,'null')) and OrderId gt -1 and Id ne 1)
 ```
-####Отображение функций####
+#### Отображение функций ####  
 | JavaScript    |  OData     |
 |----------------------------|
 | Math.ceil      | ceiling     |
@@ -228,7 +228,7 @@ context.Customers.filter(c => OdataFunctions.stringLength(c.Name) == 5); //http:
 context.Orders.filter(o => OdataFunctions.arrayLength(o.Items) > 2); //http://localhost:5000/api/Customers?$filter=Items/$count gt 2
 ```
 
-####Получение результатов####
+#### Получение результатов ####  
 Методы описывающие запрос такие как select, filter и другие должны закачиваться методом *getQueryUrl* или *toArrayAsync*.
 *getQueryUrl* возвращает URL запроса. Результатом этого кода на TypeScript:
 ```javascript
@@ -289,7 +289,7 @@ let odataParser = new OdataParser(schema);
 context.Orders.toArrayAsync(odataParser);
 ```
 
-####Типы перечислений (enum)####
+#### Типы перечислений (enum) ####  
 Если ваш OData сервис не поддерживает перечисления без пространства имен (Namespace), для правильной трансляции необходимо передать его значение в метод создания контекста данных:
 ```javascript
 let context: OrderContext = OdataContext.create(OrderContext, 'http://localhost:5000/api', 'OdataToEntity.Test.Model');
@@ -303,6 +303,6 @@ let odataParser = new OdataParser(schema);
 let context: OrderContext = OdataContext.create(OrderContext, 'http://localhost:5000/api', 'OdataToEntity.Test.Model', odataParser);
 ```
 
-####Исходный код####
+#### Исходный код ####  
 Исходный код лежит на [GitHub](https://github.com/voronov-maxim/TsToOdata).
 В папке source - код Node пакета, в папке test - тесты.
