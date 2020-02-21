@@ -22,7 +22,7 @@ using (var utf8Json = new MemoryStream())
 Вторым ашгом из Json схемы мы можем уже получить модель данных на TypeScript. Для этого можно воспользоваться библиотекой [quicktype](https://github.com/quicktype/quicktype).
 В результате у меня получилась [схема данных](https://raw.githubusercontent.com/voronov-maxim/TsToOdata/master/test/order.ts) которую я буду использовать в дальнейших примерах.
 
-####Установка TsToOdata####
+#### Установка TsToOdata ####  
 ```
 npm install ts2odata
 ```
