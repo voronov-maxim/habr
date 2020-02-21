@@ -199,7 +199,7 @@ context.Orders.filter(o => o.AltCustomerId == s.altCustomerId && o.CustomerId ==
 ```
 #### Отображение функций ####  
 | JavaScript    |  OData     |
-|----------------------------|
+|---------------|------------|
 | Math.ceil      | ceiling     |
 | concat          | concat    |
 | includes       | contains  |
