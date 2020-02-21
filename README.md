@@ -1,11 +1,11 @@
-Традиционно запросы OData к данным выражаются в виде простых строк без проверки типов при компиляции или поддержки IntelliSense, кроме того, разработчику приходится изучать синтаксис языка запросов. Данная статья описывает библиотеку TsToOdata которая превращает запросы в удобную языковую конструкцию, которые применяется аналогично классам и методам. Вы создаете запросы к строго типизированным коллекциям объектов с помощью ключевых слов языка и знакомых операторов.
+РўСЂР°РґРёС†РёРѕРЅРЅРѕ Р·Р°РїСЂРѕСЃС‹ OData Рє РґР°РЅРЅС‹Рј РІС‹СЂР°Р¶Р°СЋС‚СЃСЏ РІ РІРёРґРµ РїСЂРѕСЃС‚С‹С… СЃС‚СЂРѕРє Р±РµР· РїСЂРѕРІРµСЂРєРё С‚РёРїРѕРІ РїСЂРё РєРѕРјРїРёР»СЏС†РёРё РёР»Рё РїРѕРґРґРµСЂР¶РєРё IntelliSense, РєСЂРѕРјРµ С‚РѕРіРѕ, СЂР°Р·СЂР°Р±РѕС‚С‡РёРєСѓ РїСЂРёС…РѕРґРёС‚СЃСЏ РёР·СѓС‡Р°С‚СЊ СЃРёРЅС‚Р°РєСЃРёСЃ СЏР·С‹РєР° Р·Р°РїСЂРѕСЃРѕРІ. Р”Р°РЅРЅР°СЏ СЃС‚Р°С‚СЊСЏ РѕРїРёСЃС‹РІР°РµС‚ Р±РёР±Р»РёРѕС‚РµРєСѓ TsToOdata РєРѕС‚РѕСЂР°СЏ РїСЂРµРІСЂР°С‰Р°РµС‚ Р·Р°РїСЂРѕСЃС‹ РІ СѓРґРѕР±РЅСѓСЋ СЏР·С‹РєРѕРІСѓСЋ РєРѕРЅСЃС‚СЂСѓРєС†РёСЋ, РєРѕС‚РѕСЂС‹Рµ РїСЂРёРјРµРЅСЏРµС‚СЃСЏ Р°РЅР°Р»РѕРіРёС‡РЅРѕ РєР»Р°СЃСЃР°Рј Рё РјРµС‚РѕРґР°Рј. Р’С‹ СЃРѕР·РґР°РµС‚Рµ Р·Р°РїСЂРѕСЃС‹ Рє СЃС‚СЂРѕРіРѕ С‚РёРїРёР·РёСЂРѕРІР°РЅРЅС‹Рј РєРѕР»Р»РµРєС†РёСЏРј РѕР±СЉРµРєС‚РѕРІ СЃ РїРѕРјРѕС‰СЊСЋ РєР»СЋС‡РµРІС‹С… СЃР»РѕРІ СЏР·С‹РєР° Рё Р·РЅР°РєРѕРјС‹С… РѕРїРµСЂР°С‚РѕСЂРѕРІ.
 <cut />
 
-TsToOdata библиотека для TypeScript явлется подобием LINQ для C#, но в отличии от последнего предназначено только для запросов OData. Для разработчика, который создает запросы, наиболее очевидной частью TsToOdata является интегрированное выражение запроса. Выражения запроса используют декларативный синтаксис запроса. С помощью синтаксиса запроса можно выполнять фильтрацию, упорядочение и группирование данных из источника данных, обходясь минимальным объемом программного кода.
+TsToOdata Р±РёР±Р»РёРѕС‚РµРєР° РґР»СЏ TypeScript СЏРІР»РµС‚СЃСЏ РїРѕРґРѕР±РёРµРј LINQ РґР»СЏ C#, РЅРѕ РІ РѕС‚Р»РёС‡РёРё РѕС‚ РїРѕСЃР»РµРґРЅРµРіРѕ РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅРѕ С‚РѕР»СЊРєРѕ РґР»СЏ Р·Р°РїСЂРѕСЃРѕРІ OData. Р”Р»СЏ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°, РєРѕС‚РѕСЂС‹Р№ СЃРѕР·РґР°РµС‚ Р·Р°РїСЂРѕСЃС‹, РЅР°РёР±РѕР»РµРµ РѕС‡РµРІРёРґРЅРѕР№ С‡Р°СЃС‚СЊСЋ TsToOdata СЏРІР»СЏРµС‚СЃСЏ РёРЅС‚РµРіСЂРёСЂРѕРІР°РЅРЅРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ Р·Р°РїСЂРѕСЃР°. Р’С‹СЂР°Р¶РµРЅРёСЏ Р·Р°РїСЂРѕСЃР° РёСЃРїРѕР»СЊР·СѓСЋС‚ РґРµРєР»Р°СЂР°С‚РёРІРЅС‹Р№ СЃРёРЅС‚Р°РєСЃРёСЃ Р·Р°РїСЂРѕСЃР°. РЎ РїРѕРјРѕС‰СЊСЋ СЃРёРЅС‚Р°РєСЃРёСЃР° Р·Р°РїСЂРѕСЃР° РјРѕР¶РЅРѕ РІС‹РїРѕР»РЅСЏС‚СЊ С„РёР»СЊС‚СЂР°С†РёСЋ, СѓРїРѕСЂСЏРґРѕС‡РµРЅРёРµ Рё РіСЂСѓРїРїРёСЂРѕРІР°РЅРёРµ РґР°РЅРЅС‹С… РёР· РёСЃС‚РѕС‡РЅРёРєР° РґР°РЅРЅС‹С…, РѕР±С…РѕРґСЏСЃСЊ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РѕР±СЉРµРјРѕРј РїСЂРѕРіСЂР°РјРјРЅРѕРіРѕ РєРѕРґР°.
 
-####Создание модели данных####
-Первым делом нам надо получить отображение схемы OData на классы TypeScript. 
-Первым шагом потребуется сначала получить из EDMX Json схему. Для этого можно воспользоваться библиотекой [OdataToEntity](https://github.com/voronov-maxim/OdataToEntity/wiki/Json-schema).
+####РЎРѕР·РґР°РЅРёРµ РјРѕРґРµР»Рё РґР°РЅРЅС‹С…####
+РџРµСЂРІС‹Рј РґРµР»РѕРј РЅР°Рј РЅР°РґРѕ РїРѕР»СѓС‡РёС‚СЊ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃС…РµРјС‹ OData РЅР° РєР»Р°СЃСЃС‹ TypeScript. 
+РџРµСЂРІС‹Рј С€Р°РіРѕРј РїРѕС‚СЂРµР±СѓРµС‚СЃСЏ СЃРЅР°С‡Р°Р»Р° РїРѕР»СѓС‡РёС‚СЊ РёР· EDMX Json СЃС…РµРјСѓ. Р”Р»СЏ СЌС‚РѕРіРѕ РјРѕР¶РЅРѕ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ Р±РёР±Р»РёРѕС‚РµРєРѕР№ [OdataToEntity](https://github.com/voronov-maxim/OdataToEntity/wiki/Json-schema).
 ```cs
 IEdmModel edmModel;
 using (var reader = XmlReader.Create("edmx_schema.xml"))
@@ -19,15 +19,15 @@ using (var utf8Json = new MemoryStream())
     File.WriteAllBytes("json_schema.json", utf8Json.ToArray());
 }
 ```
-Вторым ашгом из Json схемы мы можем уже получить модель данных на TypeScript. Для этого можно воспользоваться библиотекой [quicktype](https://github.com/quicktype/quicktype).
-В результате у меня получилась [схема данных](https://raw.githubusercontent.com/voronov-maxim/TsToOdata/master/test/order.ts) которую я буду использовать в дальнейших примерах.
+Р’С‚РѕСЂС‹Рј Р°С€РіРѕРј РёР· Json СЃС…РµРјС‹ РјС‹ РјРѕР¶РµРј СѓР¶Рµ РїРѕР»СѓС‡РёС‚СЊ РјРѕРґРµР»СЊ РґР°РЅРЅС‹С… РЅР° TypeScript. Р”Р»СЏ СЌС‚РѕРіРѕ РјРѕР¶РЅРѕ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ Р±РёР±Р»РёРѕС‚РµРєРѕР№ [quicktype](https://github.com/quicktype/quicktype).
+Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ Сѓ РјРµРЅСЏ РїРѕР»СѓС‡РёР»Р°СЃСЊ [СЃС…РµРјР° РґР°РЅРЅС‹С…](https://raw.githubusercontent.com/voronov-maxim/TsToOdata/master/test/order.ts) РєРѕС‚РѕСЂСѓСЋ СЏ Р±СѓРґСѓ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІ РґР°Р»СЊРЅРµР№С€РёС… РїСЂРёРјРµСЂР°С….
 
-####Установка TsToOdata####
+####РЈСЃС‚Р°РЅРѕРІРєР° TsToOdata####
 ```
 npm install ts2odata
 ```
 
-####Создание контекста доступа к данным####
+####РЎРѕР·РґР°РЅРёРµ РєРѕРЅС‚РµРєСЃС‚Р° РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј####
 ```javascript
 import { EntitySet, OdataContext } from 'ts2odata';
 import * as oe from './order';
@@ -44,58 +44,58 @@ export class OrderContext extends OdataContext<OrderContext> {
 let context: OrderContext = OdataContext.create(OrderContext, 'http://localhost:5000/api');
 ```
 
-####Примеры запросов####
-Получить все записи в таблицы
+####РџСЂРёРјРµСЂС‹ Р·Р°РїСЂРѕСЃРѕРІ####
+РџРѕР»СѓС‡РёС‚СЊ РІСЃРµ Р·Р°РїРёСЃРё РІ С‚Р°Р±Р»РёС†С‹
 ```javascript
 context.Orders;
 //http://localhost:5000/api/Orders
 ```
-Получить выбранные столбцы
+РџРѕР»СѓС‡РёС‚СЊ РІС‹Р±СЂР°РЅРЅС‹Рµ СЃС‚РѕР»Р±С†С‹
 ```javascript
 context.Orders.select(o => { return { p: o.Name } });
 //http://localhost:5000/api/Orders?$select=Name
 ```
-Сортировка по возрастанию
+РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ
 ```javascript
 context.Orders.orderby(i => i.Id);
 //http://localhost:5000/api/Orders?$orderby=Id
 ```
-Сортировка по убыванию
+РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ СѓР±С‹РІР°РЅРёСЋ
 ```javascript
 context.Orders.orderbyDescending(i => i.Id);
 //http://localhost:5000/api/Orders?$orderby=Id desc
 ```
-Фильтрация
+Р¤РёР»СЊС‚СЂР°С†РёСЏ
 ```javascript
 context.Orders.filter(o => o.Date.getFullYear() == 2016);
 //http://localhost:5000/api/Orders?$filter=year(Date) eq 2016
 ```
-Получить связанные данные
+РџРѕР»СѓС‡РёС‚СЊ СЃРІСЏР·Р°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ
 ```javascript
 context.Orders.expand(o => o.Items);
 //http://localhost:5000/api/Orders?$expand=Items
 ```
-Получить связанные данные на несколько вложенных уровней
+РџРѕР»СѓС‡РёС‚СЊ СЃРІСЏР·Р°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ РЅР° РЅРµСЃРєРѕР»СЊРєРѕ РІР»РѕР¶РµРЅРЅС‹С… СѓСЂРѕРІРЅРµР№
 ```javascript
 context.Customers..expand(c => c.Orders).thenExpand(o => o.Items);
 //http://localhost:5000/api/Customers?$expand=Orders($expand=Items)
 ```
-Пропустить несколько записей
+РџСЂРѕРїСѓСЃС‚РёС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ Р·Р°РїРёСЃРµР№
 ```javascript
 context.Orders.orderby(i => i.Id).skip(2);
 //http://localhost:5000/api/Orders?$orderby=Id&$skip=2
 ```
-Взять несколько записей
+Р’Р·СЏС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ Р·Р°РїРёСЃРµР№
 ```javascript
 context.Orders.orderby(i => i.Id).top(3);
 //http://localhost:5000/api/Orders?$orderby=Id&$top=3
 ```
-Группировка
+Р“СЂСѓРїРїРёСЂРѕРІРєР°
 ```javascript
 context.OrderItems.groupby(i => { return { Product: i.Product } });
 //localhost:5000/api/OrderItems?$apply=groupby((Product))
 ```
-Агрегация
+РђРіСЂРµРіР°С†РёСЏ
 ```javascript
 context.OrderItems.groupby(i => { return { OrderId: i.OrderId, Status: i.Order.Status } })
     .select(g => {
@@ -111,17 +111,17 @@ context.OrderItems.groupby(i => { return { OrderId: i.OrderId, Status: i.Order.S
         }});
 //http://localhost:5000/api/OrderItems?$apply=groupby((OrderId,Order/Status),aggregate(Price with average as avg,Product with countdistinct as dcnt,Price with max as max,Order/Status with max as max_status,Price with min as min,Price with sum as sum,$count as cnt))
 ```
-Выборка по ключу
+Р’С‹Р±РѕСЂРєР° РїРѕ РєР»СЋС‡Сѓ
 ```javascript
 context.Customers.key({ Country: 'RU', Id: 1 });
 //http://localhost:5000/api/Customers(Country='RU',Id=1)
 ```
-Выборка по ключу и навигационному свойству
+Р’С‹Р±РѕСЂРєР° РїРѕ РєР»СЋС‡Сѓ Рё РЅР°РІРёРіР°С†РёРѕРЅРЅРѕРјСѓ СЃРІРѕР№СЃС‚РІСѓ
 ```javascript
 context.OrderItems.key(1, i => i.Order.Customer);
 //http://localhost:5000/api/OrderItems(1)/Order/Customer
 ```
-Вычесляемые столбцы
+Р’С‹С‡РµСЃР»СЏРµРјС‹Рµ СЃС‚РѕР»Р±С†С‹
 ```javascript
 context.OrderItems
     .select(i => {
@@ -133,7 +133,7 @@ context.OrderItems
     });
 //http://localhost:5000/api/OrderItems?$select=Product&$compute=Count mul Price as Total,Id add OrderId as SumId
 ```
-Лямбда операторы
+Р›СЏРјР±РґР° РѕРїРµСЂР°С‚РѕСЂС‹
 ```javascript
 context.Orders.filter(o => o.Items.every(i => i.Price >= 2.1));
 //http://localhost:5000/api/Orders?$filter=Items/all(d:d/Price ge 2.1)
@@ -142,19 +142,19 @@ context.Orders.filter(o => o.Items.every(i => i.Price >= 2.1));
 context.Orders.filter(o => o.Items.some(i => i.Count > 2));
 //http://localhost:5000/api/Orders?$filter=Items/any(d:d/Count gt 2)
 ```
-IN оператор
+IN РѕРїРµСЂР°С‚РѕСЂ
 ```javascript
 let items = [1.1, 1.2, 1.3];
 context.OrderItems.filter(i => items.includes(i.Price), { items: items });
 //http://localhost:5000/api/OrderItems?$filter=Price in (1.1,1.2,1.3)
 ```
-Количество записей
+РљРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№
 ```javascript
 context.Orders.count();
 //http://localhost:5000/api/Orders/$count
 ```
-Вернуть контекст источника данных
-Метод *asEntitySet* необходим когда надо выполнить сортировку по столбцам отсутствующим в выборке
+Р’РµСЂРЅСѓС‚СЊ РєРѕРЅС‚РµРєСЃС‚ РёСЃС‚РѕС‡РЅРёРєР° РґР°РЅРЅС‹С…
+РњРµС‚РѕРґ *asEntitySet* РЅРµРѕР±С…РѕРґРёРј РєРѕРіРґР° РЅР°РґРѕ РІС‹РїРѕР»РЅРёС‚СЊ СЃРѕСЂС‚РёСЂРѕРІРєСѓ РїРѕ СЃС‚РѕР»Р±С†Р°Рј РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‰РёРј РІ РІС‹Р±РѕСЂРєРµ
 ```javascript
 context.Orders(o => o.AltCustomer).thenSelect(o => {{
     p1: o.Address,
@@ -165,12 +165,12 @@ context.Orders(o => o.AltCustomer).thenSelect(o => {{
 }}).asEntitySet().orderby(o => o.Id)
 //http://localhost:5000/api/Orders?$expand=AltCustomer($select=Address,Country,Id,Name,Sex)&$orderby=Id
 ```
-Остальные примеры можно посмотреть на [GitHub](https://github.com/voronov-maxim/TsToOdata/blob/master/test/QueryTests.ts).
+РћСЃС‚Р°Р»СЊРЅС‹Рµ РїСЂРёРјРµСЂС‹ РјРѕР¶РЅРѕ РїРѕСЃРјРѕС‚СЂРµС‚СЊ РЅР° [GitHub](https://github.com/voronov-maxim/TsToOdata/blob/master/test/QueryTests.ts).
 
-Следует заметить что методы *select*, *expand*, *groupby* изменяют контекст, их результатом становиться новый тип и что бы продолжить выполнение в этом новом контексте нужно использовать методы с приставкой *then*: *thenFilter*, *thenExpand*, *thenSelect*, *thenOrderby*, *thenOrderbyDescending*, *thenSkip*, *thenTop*. Методы *select* и *thenSelect* необратимо меняют контекст и чтобы вернуться к родительскому контексту надо применить метод *asEntitySet*.
+РЎР»РµРґСѓРµС‚ Р·Р°РјРµС‚РёС‚СЊ С‡С‚Рѕ РјРµС‚РѕРґС‹ *select*, *expand*, *groupby* РёР·РјРµРЅСЏСЋС‚ РєРѕРЅС‚РµРєСЃС‚, РёС… СЂРµР·СѓР»СЊС‚Р°С‚РѕРј СЃС‚Р°РЅРѕРІРёС‚СЊСЃСЏ РЅРѕРІС‹Р№ С‚РёРї Рё С‡С‚Рѕ Р±С‹ РїСЂРѕРґРѕР»Р¶РёС‚СЊ РІС‹РїРѕР»РЅРµРЅРёРµ РІ СЌС‚РѕРј РЅРѕРІРѕРј РєРѕРЅС‚РµРєСЃС‚Рµ РЅСѓР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РјРµС‚РѕРґС‹ СЃ РїСЂРёСЃС‚Р°РІРєРѕР№ *then*: *thenFilter*, *thenExpand*, *thenSelect*, *thenOrderby*, *thenOrderbyDescending*, *thenSkip*, *thenTop*. РњРµС‚РѕРґС‹ *select* Рё *thenSelect* РЅРµРѕР±СЂР°С‚РёРјРѕ РјРµРЅСЏСЋС‚ РєРѕРЅС‚РµРєСЃС‚ Рё С‡С‚РѕР±С‹ РІРµСЂРЅСѓС‚СЊСЃСЏ Рє СЂРѕРґРёС‚РµР»СЊСЃРєРѕРјСѓ РєРѕРЅС‚РµРєСЃС‚Сѓ РЅР°РґРѕ РїСЂРёРјРµРЅРёС‚СЊ РјРµС‚РѕРґ *asEntitySet*.
 
-####Параметризация запросов####
-Запросы фильтрации - *filter*, выборки - *select*, групировки - *groupby* можно параметризировать, имена свойств объекта параметризации должны совпадать с именами переменных в коде запроса.
+####РџР°СЂР°РјРµС‚СЂРёР·Р°С†РёСЏ Р·Р°РїСЂРѕСЃРѕРІ####
+Р—Р°РїСЂРѕСЃС‹ С„РёР»СЊС‚СЂР°С†РёРё - *filter*, РІС‹Р±РѕСЂРєРё - *select*, РіСЂСѓРїРёСЂРѕРІРєРё - *groupby* РјРѕР¶РЅРѕ РїР°СЂР°РјРµС‚СЂРёР·РёСЂРѕРІР°С‚СЊ, РёРјРµРЅР° СЃРІРѕР№СЃС‚РІ РѕР±СЉРµРєС‚Р° РїР°СЂР°РјРµС‚СЂРёР·Р°С†РёРё РґРѕР»Р¶РЅС‹ СЃРѕРІРїР°РґР°С‚СЊ СЃ РёРјРµРЅР°РјРё РїРµСЂРµРјРµРЅРЅС‹С… РІ РєРѕРґРµ Р·Р°РїСЂРѕСЃР°.
 ```javascript
 let count: number | null = null;
 context.OrderItems.filter(i => i.Count == count, { count: count }); //http://localhost:5000/api/OrderItems?$filter=Count eq null
@@ -197,7 +197,7 @@ let s = {
 context.Orders.filter(o => o.AltCustomerId == s.altCustomerId && o.CustomerId == s.customerId && (o.Date.getFullYear() == s.dateYear && o.Date.getMonth() > s.dateMonth && o.Date.getDay() < s.dateDay || o.Date == s.date) && o.Name.includes(s.name) && o.Status == s.status, s).expand(o => o.Items).thenFilter(i => (i.Count == s.count1 || i.Count == s.count2) && (i.Price == s.price1 || i.Price == s.price2) && (i.Product.includes(s.product1) || i.Product.includes(s.product2)) && i.OrderId > s.orderId && i.Id != s.id, s);
 //http://localhost:5000/api/Orders?$filter=AltCustomerId eq 3 and CustomerId eq 4 and (year(Date) eq 2016 and month(Date) gt 11 and day(Date) lt 20 or Date eq null) and contains(Name,'unknown') and Status eq OdataToEntity.Test.Model.OrderStatus'Unknown'&$expand=Items($filter=(Count eq 0 or Count eq null) and (Price eq 0 or Price eq null) and (contains(Product,'unknown') or contains(Product,'null')) and OrderId gt -1 and Id ne 1)
 ```
-####Отображение функций####
+####РћС‚РѕР±СЂР°Р¶РµРЅРёРµ С„СѓРЅРєС†РёР№####
 | JavaScript    |  OData     |
 |----------------------------|
 | Math.ceil      | ceiling     |
@@ -219,18 +219,18 @@ context.Orders.filter(o => o.AltCustomerId == s.altCustomerId && o.CustomerId ==
 | toUpperCase | toupper   |
 | trim             | trim        |
 | getFullYear   | year        |
-Для длины строки нужно использовать *OdataFunctions.stringLength*
+Р”Р»СЏ РґР»РёРЅС‹ СЃС‚СЂРѕРєРё РЅСѓР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ *OdataFunctions.stringLength*
 ```javascript
 context.Customers.filter(c => OdataFunctions.stringLength(c.Name) == 5); //http://localhost:5000/api/Customers?$filter=length(Name) eq 5
 ```
-Для длины массива нужно использовать *OdataFunctions.arrayLength*
+Р”Р»СЏ РґР»РёРЅС‹ РјР°СЃСЃРёРІР° РЅСѓР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ *OdataFunctions.arrayLength*
 ```javascript
 context.Orders.filter(o => OdataFunctions.arrayLength(o.Items) > 2); //http://localhost:5000/api/Customers?$filter=Items/$count gt 2
 ```
 
-####Получение результатов####
-Методы описывающие запрос такие как select, filter и другие должны закачиваться методом *getQueryUrl* или *toArrayAsync*.
-*getQueryUrl* возвращает URL запроса. Результатом этого кода на TypeScript:
+####РџРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ####
+РњРµС‚РѕРґС‹ РѕРїРёСЃС‹РІР°СЋС‰РёРµ Р·Р°РїСЂРѕСЃ С‚Р°РєРёРµ РєР°Рє select, filter Рё РґСЂСѓРіРёРµ РґРѕР»Р¶РЅС‹ Р·Р°РєР°С‡РёРІР°С‚СЊСЃСЏ РјРµС‚РѕРґРѕРј *getQueryUrl* РёР»Рё *toArrayAsync*.
+*getQueryUrl* РІРѕР·РІСЂР°С‰Р°РµС‚ URL Р·Р°РїСЂРѕСЃР°. Р РµР·СѓР»СЊС‚Р°С‚РѕРј СЌС‚РѕРіРѕ РєРѕРґР° РЅР° TypeScript:
 ```javascript
 let url: URL = context.Customers
     .expand(c => c.AltOrders).thenExpand(o => o.Items).thenOrderby(i => i.Price)
@@ -239,20 +239,20 @@ let url: URL = context.Customers
     .expand(c => c.Orders).thenExpand(o => o.ShippingAddresses).thenOrderby(s => s.Id)
     .orderby(c => c.Country).orderby(c => c.Id).getQueryUrl();
 ```
-будет OData запрос:
+Р±СѓРґРµС‚ OData Р·Р°РїСЂРѕСЃ:
 ```
 http://localhost:5000/api/Customers?$expand=
 AltOrders($expand=Items($orderby=Price),ShippingAddresses($orderby=Id)),
 Orders($expand=Items($orderby=Price),ShippingAddresses($orderby=Id))
 &$orderby=Country,Id
 ```
-*toArrayAsync* возвращает результат запроса в виде Json. Результатом этого кода на TypeScript:
+*toArrayAsync* РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ Р·Р°РїСЂРѕСЃР° РІ РІРёРґРµ Json. Р РµР·СѓР»СЊС‚Р°С‚РѕРј СЌС‚РѕРіРѕ РєРѕРґР° РЅР° TypeScript:
 ```javascript
 context.Customers
     .expand(c => c.Orders).thenSelect(o => { return { Date: o.Date } }).orderby(o => o.Date)
     .asEntitySet().select(c => { return { Name: c.Name } }).orderby(c => c.Name).toArrayAsync();
 ```
-будет Json:
+Р±СѓРґРµС‚ Json:
 ```json
 [{
 		"Name": "Ivan",
@@ -280,7 +280,7 @@ context.Customers
 	}
 ]
 ```
-Если нужно получить свойство как дату, а не строку можно вызвать *toArrayAsync* с необязательным параметром  *OdataParser*:
+Р•СЃР»Рё РЅСѓР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ СЃРІРѕР№СЃС‚РІРѕ РєР°Рє РґР°С‚Сѓ, Р° РЅРµ СЃС‚СЂРѕРєСѓ РјРѕР¶РЅРѕ РІС‹Р·РІР°С‚СЊ *toArrayAsync* СЃ РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рј РїР°СЂР°РјРµС‚СЂРѕРј  *OdataParser*:
 ```javascript
 import { OdataParser } from 'ts2odata';
 import schema from './schema.json';
@@ -289,12 +289,12 @@ let odataParser = new OdataParser(schema);
 context.Orders.toArrayAsync(odataParser);
 ```
 
-####Типы перечислений (enum)####
-Если ваш OData сервис не поддерживает перечисления без пространства имен (Namespace), для правильной трансляции необходимо передать его значение в метод создания контекста данных:
+####РўРёРїС‹ РїРµСЂРµС‡РёСЃР»РµРЅРёР№ (enum)####
+Р•СЃР»Рё РІР°С€ OData СЃРµСЂРІРёСЃ РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚ РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ Р±РµР· РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІР° РёРјРµРЅ (Namespace), РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕР№ С‚СЂР°РЅСЃР»СЏС†РёРё РЅРµРѕР±С…РѕРґРёРјРѕ РїРµСЂРµРґР°С‚СЊ РµРіРѕ Р·РЅР°С‡РµРЅРёРµ РІ РјРµС‚РѕРґ СЃРѕР·РґР°РЅРёСЏ РєРѕРЅС‚РµРєСЃС‚Р° РґР°РЅРЅС‹С…:
 ```javascript
 let context: OrderContext = OdataContext.create(OrderContext, 'http://localhost:5000/api', 'OdataToEntity.Test.Model');
 ```
-В некоторых случаях для правильной трансляции перечислений может потребоваться создание объекта *OdataParser*.
+Р’ РЅРµРєРѕС‚РѕСЂС‹С… СЃР»СѓС‡Р°СЏС… РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕР№ С‚СЂР°РЅСЃР»СЏС†РёРё РїРµСЂРµС‡РёСЃР»РµРЅРёР№ РјРѕР¶РµС‚ РїРѕС‚СЂРµР±РѕРІР°С‚СЊСЃСЏ СЃРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° *OdataParser*.
 ```javascript
 import { OdataParser } from 'ts2odata';
 import schema from './schema.json';
@@ -303,6 +303,6 @@ let odataParser = new OdataParser(schema);
 let context: OrderContext = OdataContext.create(OrderContext, 'http://localhost:5000/api', 'OdataToEntity.Test.Model', odataParser);
 ```
 
-####Исходный код####
-Исходный код лежит на [GitHub](https://github.com/voronov-maxim/TsToOdata).
-В папке source - код Node пакета, в папке test - тесты.
+####РСЃС…РѕРґРЅС‹Р№ РєРѕРґ####
+РСЃС…РѕРґРЅС‹Р№ РєРѕРґ Р»РµР¶РёС‚ РЅР° [GitHub](https://github.com/voronov-maxim/TsToOdata).
+Р’ РїР°РїРєРµ source - РєРѕРґ Node РїР°РєРµС‚Р°, РІ РїР°РїРєРµ test - С‚РµСЃС‚С‹.
