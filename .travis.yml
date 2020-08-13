@@ -15,7 +15,6 @@ before_script:
   - psql -d OdataToEntity -f ./test/sql_scripts/postgresql.sql -U postgres
 
   - sudo snap alias dotnet-sdk.dotnet dotnet
-  - dotnet restore ./source/OdataToEntity
   - dotnet restore ./test/OdataToEntity.Test.EfCore.PostgreSql
 script:
   - dotnet test ./test/OdataToEntity.Test.EfCore.PostgreSql/OdataToEntity.Test.EfCore.PostgreSql.csproj -c Release
