@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\dependencies.props" />
+
+  <PropertyGroup>
+    <Description>Test Linq2Db Sql Server for OdataToEntity</Description>
+    <AssemblyTitle>Test Linq2Db Sql Server for OdataToEntity</AssemblyTitle>
+    <Authors>Maxim Voronov</Authors>
+    <TargetFramework>$(NetCoreAppVersion)</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <AssemblyName>OdataToEntity.Test.Linq2Db</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>$(CSharpVersion)</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <StartupObject>OdataToEntity.Test.Linq2Db.Program</StartupObject>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DefineConstants>IGNORE_PLNull</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="linq2db" Version="2.9.8" />
+    <PackageReference Include="linq2db.SqlServer" Version="2.9.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCoreVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EfCoreVersion)" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(TestSdkVersion)" />
+    <PackageReference Include="Newtonsoft.Json" Version="$(JsonNetVersion)" />
+    <PackageReference Include="xunit" Version="$(XunitVersion)" />
+    <PackageReference Include="xunit.runner.visualstudio" version="$(XunitVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\OdataToEntity.Test.EfCore.SqlServer\DbFixtureInitDb.cs" Link="DbFixtureInitDb.cs" />
+    <Compile Include="..\OdataToEntity.Test.EfCore.SqlServer\OrderContextOptions.cs" Link="OrderContextOptions.cs" />
+    <Compile Include="..\OdataToEntity.Test.EfCore.SqlServer\PerformanceCacheTest.cs" Link="PerformanceCacheTest.cs" />
+    <Compile Include="..\OdataToEntity.Test.EfCore.SqlServer\ProcedureTest.cs" Link="ProcedureTest.cs" />
+    <Compile Include="..\OdataToEntity.Test\DbFixture.cs" Link="DbFixture.cs" />
+    <Compile Include="..\OdataToEntity.Test\QueryComparerTest.cs" Link="QueryComparerTest.cs" />
+    <Compile Include="..\OdataToEntity.Test\Model\*.cs" Link="Model\%(FileName).cs" />
+    <Compile Include="..\OdataToEntity.Test\Common\*.cs" Link="Common\%(Filename).cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="..\OdataToEntity.Test\Batches\*.*" Link="Batches\%(FileName)%(Extension)">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\OdataToEntity.Test.Linq2DbModel\OdataToEntity.Test.Linq2DbModel.csproj">
+      <Aliases>lq2db</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\OdataToEntity.EfCore\OdataToEntity.EfCore.csproj" />
+    <ProjectReference Include="..\..\source\OdataToEntity.Linq2Db\OdataToEntity.Linq2Db.csproj" />
+    <ProjectReference Include="..\..\source\OdataToEntity\OdataToEntity.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\..\dependencies.props" />
+
+  <PropertyGroup>
+    <Description>Test Asp Mvc sertver for OdataToEntity</Description>
+    <AssemblyTitle>Test Asp Mvc server for OdataToEntity</AssemblyTitle>
+    <Authors>Maxim Voronov</Authors>
+    <TargetFramework>$(NetCoreAppVersion)</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <AssemblyName>OdataToEntity.Test.AspMvcServer</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\OdataToEntity.Test.EfCore.SqlServer\OeEfCoreSqlServerDataAdapter.cs" Link="OeEfCoreSqlServerDataAdapter.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.EfCore.SqlServer\OrderDataAdapter.cs" Link="OrderDataAdapter.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\EfInclude.cs" Link="Common\EfInclude.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\OpenTypeConverter.cs" Link="Common\OpenTypeConverter.cs" />
+    <Compile Include="..\OdataToEntity.Test.AspServer\OrderContextOptions.cs" Link="OrderContextOptions.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Model\*.cs" Link="Model\%(FileName).cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\source\OdataToEntity.AspNetCore\OdataToEntity.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\source\OdataToEntity.EfCore\OdataToEntity.EfCore.csproj" />
+    <ProjectReference Include="..\..\..\source\OdataToEntity\OdataToEntity.csproj" />
+  </ItemGroup>
+
+</Project>

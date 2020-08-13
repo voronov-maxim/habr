@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\..\dependencies.props" />
+
+  <PropertyGroup>
+    <Description>Test Wcf service for OdataToEntity</Description>
+    <AssemblyTitle>Test Wcf service for OdataToEntity</AssemblyTitle>
+    <Authors>Maxim Voronov</Authors>
+    <TargetFramework>$(NetCoreAppVersion)</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <AssemblyName>OdataToEntity.Test.WcfService</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>$(CSharpVersion)</LangVersion>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>WCF_SERVICE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCoreVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EfCoreVersion)" />
+    <PackageReference Include="Microsoft.OData.Core" version="$(ODataLibVersion)" />
+    <PackageReference Include="Microsoft.OData.Edm" version="$(ODataLibVersion)" />
+    <PackageReference Include="Microsoft.Spatial" version="$(ODataLibVersion)" />
+    <PackageReference Include="Newtonsoft.Json" Version="$(JsonNetVersion)" />
+    <PackageReference Include="xunit" Version="$(XunitVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\OdataToEntity.Test\Common\EfInclude.cs" Link="Common\EfInclude.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\IncludeVisitor.cs" Link="Common\IncludeVisitor.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\OpenTypeConverter.cs" Link="Common\OpenTypeConverter.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\PageNextLinkModelBoundBuilder.cs" Link="Common\PageNextLinkModelBoundBuilder.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\TestHelper.cs" Link="Common\TestHelper.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Model\*.cs" Link="Model\%(FileName).cs" />
+    <Compile Include="..\..\OdataToEntity.Test.EfCore.SqlServer\OrderDataAdapter.cs" Link="OrderDataAdapter.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.EfCore.SqlServer\OrderContextOptions.cs" Link="OrderContextOptions.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.EfCore.SqlServer\OeEfCoreSqlServerDataAdapter.cs" Link="OeEfCoreSqlServerDataAdapter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\source\OdataToEntity.EfCore\OdataToEntity.EfCore.csproj" />
+    <ProjectReference Include="..\..\..\source\OdataToEntity\OdataToEntity.csproj" />
+    <ProjectReference Include="..\CoreWcf\src\CoreWCF.NetTcp\src\CoreWCF.NetTcp.csproj" />
+    <ProjectReference Include="..\CoreWcf\src\CoreWCF.Primitives\src\CoreWCF.Primitives.csproj" />
+  </ItemGroup>
+
+</Project>

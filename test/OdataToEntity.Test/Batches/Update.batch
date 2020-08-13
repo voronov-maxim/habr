@@ -1,0 +1,76 @@
+﻿
+--batch_2aa63275-8b69-49c7-a3fc-4a66c831d624
+Content-Type: multipart/mixed; boundary=changeset_2ba34bb3-9be1-4fb5-8804-395055ed3eba
+
+--changeset_2ba34bb3-9be1-4fb5-8804-395055ed3eba
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID: 2
+
+PATCH http://dummy/Orders(1) HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Content-Type: application/json;odata.metadata=minimal
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+{"@odata.type":"#OdataToEntity.Test.Model.Order","Id":1,"Name":"New Order 1"}
+--changeset_2ba34bb3-9be1-4fb5-8804-395055ed3eba
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID: 4
+
+PATCH http://dummy/OrderItems(3) HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Content-Type: application/json;odata.metadata=minimal
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+{"@odata.type":"#OdataToEntity.Test.Model.OrderItem","Id":3,"Product":"New Product order 1 item 3"}
+--changeset_2ba34bb3-9be1-4fb5-8804-395055ed3eba
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID: 6
+
+PATCH http://dummy/Customers(Country='RU',Id=1) HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Content-Type: application/json;odata.metadata=minimal
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+{"@odata.type":"#OdataToEntity.Test.Model.Customer","Country":"RU","Id":1,"Sex@odata.type":"#OdataToEntity.Test.Model.Sex","Sex":"Female"}
+--changeset_2ba34bb3-9be1-4fb5-8804-395055ed3eba
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID: 8
+
+PATCH http://dummy/Customers(Country='EN',Id=1) HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Content-Type: application/json;odata.metadata=minimal
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+{"@odata.type":"#OdataToEntity.Test.Model.Customer","Address":"Southampton","Country":"EN","Id":1,"Sex@odata.type":"#OdataToEntity.Test.Model.Sex","Sex":null}
+--changeset_2ba34bb3-9be1-4fb5-8804-395055ed3eba
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID: 9
+
+PATCH http://dummy/Categories(6) HTTP/1.1
+OData-Version: 4.0
+OData-MaxVersion: 4.0
+Content-Type: application/json;odata.metadata=minimal
+Accept: application/json;odata.metadata=minimal
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+
+{"@odata.type":"#OdataToEntity.Test.Model.Category","Id":6,"Name":"sombrero jacket","ParentId":4}
+--changeset_2ba34bb3-9be1-4fb5-8804-395055ed3eba--
+--batch_2aa63275-8b69-49c7-a3fc-4a66c831d624--

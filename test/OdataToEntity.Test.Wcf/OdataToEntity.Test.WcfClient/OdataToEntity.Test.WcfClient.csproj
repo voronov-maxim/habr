@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\..\dependencies.props" />
+
+  <PropertyGroup>
+    <Description>Test Wcf client for OdataToEntity</Description>
+    <AssemblyTitle>Test Wcf client for OdataToEntity</AssemblyTitle>
+    <Authors>Maxim Voronov</Authors>
+    <TargetFramework>$(NetCoreAppVersion)</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <AssemblyName>OdataToEntity.Test.WcfClient</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>$(CSharpVersion)</LangVersion>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCoreVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EfCoreVersion)" />
+    <PackageReference Include="Microsoft.OData.Client" version="$(ODataLibVersion)" />
+    <PackageReference Include="Microsoft.OData.Core" version="$(ODataLibVersion)" />
+    <PackageReference Include="Microsoft.OData.Edm" version="$(ODataLibVersion)" />
+    <PackageReference Include="Microsoft.Spatial" version="$(ODataLibVersion)" />
+    <PackageReference Include="Newtonsoft.Json" version="$(JsonNetVersion)" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.7.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\OdataToEntity.Test.Asp\OdataToEntity.Test.AspClient\BatchTest.cs" Link="BatchTest.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.Asp\OdataToEntity.Test.AspClient\Connected Services\ODataClient\ODataClient.cs" Link="Connected Services\ODataClient.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.Asp\OdataToEntity.Test.AspClient\DbFixtureInitDb.cs" Link="DbFixtureInitDb.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.Asp\OdataToEntity.Test.AspClient\DbFunctionAttribute.cs" Link="DbFunctionAttribute.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.Asp\OdataToEntity.Test.AspClient\FactAttribute.cs" Link="FactAttribute.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.Asp\OdataToEntity.Test.AspClient\ODataClient.cs" Link="ODataClient.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.Asp\OdataToEntity.Test.AspClient\ProcedureTest.cs" Link="ProcedureTest.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.Asp\OdataToEntity.Test.AspClient\SelectTest2.cs" Link="SelectTest2.cs" />
+    <Compile Include="..\..\OdataToEntity.Test.Asp\OdataToEntity.Test.AspClient\TypeMapperVisitor.cs" Link="TypeMapperVisitor.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\EfInclude.cs" Link="Common\EfInclude.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\IncludeVisitor.cs" Link="Common\IncludeVisitor.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\OpenTypeConverter.cs" Link="Common\OpenTypeConverter.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\QueryParameters.cs" Link="Common\QueryParameters.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\ResponseReader.cs" Link="Common\ResponseReader.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\SelectTest.cs" Link="Common\SelectTest.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\ManyColumnsTest.cs" Link="Common\ManyColumnsTest.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Common\TestHelper.cs" Link="Common\TestHelper.cs" />
+    <Compile Include="..\..\OdataToEntity.Test\Model\*.cs" Link="Model\%(FileName)" />
+    <Compile Include="..\OdataToEntity.Test.WcfService\IOdataWcf.cs" Link="IOdataWcf.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\source\OdataToEntity.EfCore\OdataToEntity.EfCore.csproj" />
+    <ProjectReference Include="..\..\..\source\OdataToEntity\OdataToEntity.csproj" />
+  </ItemGroup>
+
+</Project>

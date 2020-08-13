@@ -1,0 +1,70 @@
+﻿{
+  "Operations": [
+    {
+      "DbName": "dbo.GetOrders",
+      "ResultTableDbName": "dbo.Orders"
+    },
+    {
+      "DbName": "dbo.TableFunction",
+      "ResultTableDbName": "dbo.Orders"
+    },
+    {
+      "DbName": "dbo.TableFunctionWithParameters",
+      "ResultTableDbName": "dbo.Orders"
+    }
+  ],
+  "Tables": [
+    {
+      "DbName": "dbo.Categories",
+      "EdmName": "Categories"
+    },
+    {
+      "DbName": "dbo.Customers",
+      "EdmName": "Customers",
+      "Navigations": [
+        {
+          "ConstraintName": "FK_Orders_AltCustomers",
+          "NavigationName": "AltOrders"
+        },
+        {
+          "NavigationName": "ShippingAddresses",
+          "ManyToManyTarget": "ShippingAddresses"
+        }
+      ]
+    },
+    {
+      "DbName": "dbo.CustomerShippingAddress",
+      "EdmName": "CustomerShippingAddress"
+    },
+    {
+      "DbName": "dbo.ManyColumns",
+      "EdmName": "ManyColumns"
+    },
+    {
+      "DbName": "dbo.Orders",
+      "EdmName": "Orders",
+      "Navigations": [
+        {
+          "NavigationName": "Items",
+          "TargetTableName": "dbo.OrderItems"
+        },
+        {
+          "ConstraintName": "FK_Orders_AltCustomers",
+          "NavigationName": "AltCustomer"
+        }
+      ]
+    },
+    {
+      "DbName": "dbo.OrderItems",
+      "EdmName": "OrderItems"
+    },
+    {
+      "DbName": "dbo.ShippingAddresses",
+      "EdmName": "ShippingAddresses"
+    },
+    {
+      "DbName": "dbo.OrderItemsView",
+      "EdmName": "OrderItemsView"
+    }
+  ]
+}

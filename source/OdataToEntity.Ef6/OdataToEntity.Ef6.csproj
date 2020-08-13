@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\dependencies.props" />
+
+  <PropertyGroup>
+    <Description>Classes bridge from OdataToEntity to Entity Framework 6.3.0. Abstraction layer access to DataContext Entity Framework 6.3.0.</Description>
+    <Authors>Maxim Voronov</Authors>
+    <TargetFrameworks>$(NetStandardVersion);$(FrameworkVersion)</TargetFrameworks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <AssemblyName>OdataToEntity.Ef6</AssemblyName>
+    <Title>Entity Framework 6 adapter for OdataEntity</Title>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyCopyright>MIT</AssemblyCopyright>
+    <AssemblyDescription>$(Description)</AssemblyDescription>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+    <AssemblyVersion>$(OdataToEntityVersion)</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>OdataToEntity.Ef6</PackageId>
+    <PackageTags>odata;data;services;odatatoentity;ef;entity framework;entity</PackageTags>
+    <PackageProjectUrl>https://github.com/voronov-maxim/OdataToEntity</PackageProjectUrl>
+    <PackageVersion>$(OdataToEntityVersion)</PackageVersion>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OdataToEntity\OdataToEntity.csproj" />
+  </ItemGroup>
+</Project>

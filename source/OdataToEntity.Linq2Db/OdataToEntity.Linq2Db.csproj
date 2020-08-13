@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\dependencies.props" />
+
+  <PropertyGroup>
+    <Description>Classes bridge from OdataToEntity to Linq2Db. Abstraction layer access to DataContext Entity Linq2Db</Description>
+    <Authors>Maxim Voronov</Authors>
+    <TargetFramework>$(NetStandardVersion)</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <AssemblyName>OdataToEntity.Linq2Db</AssemblyName>
+    <Title>Linq2Db adapter for OdataEntity</Title>
+    <LangVersion>$(CSharpVersion)</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyCopyright>MIT</AssemblyCopyright>
+    <AssemblyDescription>$(Description)</AssemblyDescription>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+    <AssemblyVersion>$(OdataToEntityVersion)</AssemblyVersion>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <PackageId>OdataToEntity.Linq2Db</PackageId>
+    <PackageTags>odata;data;services;odatatoentity;linq2db;entity</PackageTags>
+    <PackageProjectUrl>https://github.com/voronov-maxim/OdataToEntity</PackageProjectUrl>
+    <PackageVersion>$(OdataToEntityVersion)</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="linq2db" Version="2.9.8" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="$(ComponentModelAnnotations)" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\OdataToEntity\OdataToEntity.csproj" />
+  </ItemGroup>
+</Project>

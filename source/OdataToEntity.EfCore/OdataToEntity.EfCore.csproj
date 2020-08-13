@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\dependencies.props" />
+
+  <PropertyGroup>
+    <Description>Classes bridge from ODataToEntity to Entity Framework Core. Abstraction layer access to DataContext Entity Framework Core.</Description>
+    <Authors>Maxim Voronov</Authors>
+    <TargetFramework>$(NetStandardVersion)</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <AssemblyName>OdataToEntity.EfCore</AssemblyName>
+    <AssemblyVersion>$(OdataToEntityVersion)</AssemblyVersion>
+    <Title>Entity Framework Core adapter for OdataEntity</Title>
+    <LangVersion>$(CSharpVersion)</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyCopyright>MIT</AssemblyCopyright>
+    <AssemblyDescription>$(Description)</AssemblyDescription>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+    <AssemblyVersion>$(OdataToEntityVersion)</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>OdataToEntity.EfCore</PackageId>
+    <PackageTags>odata;data;services;odatatoentity;ef;entity framework core;entity;core</PackageTags>
+    <PackageProjectUrl>https://github.com/voronov-maxim/OdataToEntity</PackageProjectUrl>
+    <PackageVersion>$(OdataToEntityVersion)</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>EF1001</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OdataToEntity\OdataToEntity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCoreVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="$(EfCoreVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EfCoreVersion)" />
+  </ItemGroup>
+
+</Project>

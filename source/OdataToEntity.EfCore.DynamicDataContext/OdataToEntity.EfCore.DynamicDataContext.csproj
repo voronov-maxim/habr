@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\dependencies.props" />
+
+  <PropertyGroup>
+    <Description>Access database without data context.</Description>
+    <Authors>Maxim Voronov</Authors>
+    <TargetFramework>$(NetStandardVersion)</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <AssemblyName>OdataToEntity.EfCore.DynamicDataContext</AssemblyName>
+    <AssemblyVersion>$(OdataToEntityVersion)</AssemblyVersion>
+    <Title>Dynamic data context for OdataEntity</Title>
+    <LangVersion>$(CSharpVersion)</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyCopyright>MIT</AssemblyCopyright>
+    <AssemblyDescription>$(Description)</AssemblyDescription>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+    <AssemblyVersion>$(OdataToEntityVersion)</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>EF1001</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OdataToEntity\OdataToEntity.csproj" />
+    <ProjectReference Include="..\OdataToEntity.EfCore\OdataToEntity.EfCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.OData.Core" Version="$(ODataLibVersion)" />
+    <PackageReference Include="Microsoft.OData.Edm" Version="$(ODataLibVersion)" />
+    <PackageReference Include="Pluralize.NET" Version="1.0.2" />
+  </ItemGroup>
+
+</Project>

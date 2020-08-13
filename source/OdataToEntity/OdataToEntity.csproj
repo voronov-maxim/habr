@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\dependencies.props" />
+
+  <PropertyGroup>
+    <Description>Classes to serialize, deserialize OData JSON payloads. Supports OData v4 only. Enables construction of OData services via Entity Framework (Linq2Db) DataContext (with/without controller).</Description>
+    <Authors>Maxim Voronov</Authors>
+    <TargetFrameworks>$(NetStandardVersion);$(FrameworkVersion)</TargetFrameworks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <AssemblyName>OdataToEntity</AssemblyName>
+    <Title>OData via Entity Framework (Linq2Db)</Title>
+    <LangVersion>$(CSharpVersion)</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyCopyright>MIT</AssemblyCopyright>
+    <AssemblyDescription>$(Description)</AssemblyDescription>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+    <AssemblyVersion>$(OdataToEntityVersion)</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>OdataToEntity</PackageId>
+    <PackageTags>odata;data;services;odatalib;edmlib;ef;entity framework;linq2db;entity;core</PackageTags>
+    <PackageProjectUrl>https://github.com/voronov-maxim/OdataToEntity</PackageProjectUrl>
+    <PackageVersion>$(OdataToEntityVersion)</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.OData.Core" Version="$(ODataLibVersion)" />
+    <PackageReference Include="Microsoft.OData.Edm" Version="$(ODataLibVersion)" />
+    <PackageReference Include="Microsoft.Spatial" Version="$(ODataLibVersion)" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="$(ComponentModelAnnotations)" />
+    <PackageReference Include="System.Interactive.Async" Version="$(SystemInteractiveAsyncVersion)" />
+    <PackageReference Include="System.Text.Json" Version="$(CoreFxVersion)" />
+  </ItemGroup>
+
+</Project>
