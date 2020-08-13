@@ -1,7 +1,7 @@
 dist: xenial
 addons:
   snaps:
-    - name: dotnet-sdk
+    - name: dotnet-sdk-3.1
       confinement: classic
       channel: latest/stable
 sudo: required
