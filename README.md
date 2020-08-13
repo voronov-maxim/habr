@@ -2,7 +2,7 @@
 [Wiki](https://github.com/voronov-maxim/OdataToEntity/wiki)  
 [![Travis](https://travis-ci.org/voronov-maxim/habr.svg?branch=master)](https://travis-ci.org/voronov-maxim/habr?branch=master) 
 
-OData .net core
+OData .net core1
 
 This library provides a simple approach to creating OData service from ORM data context.
 This translates the OData query into an expression tree and passes it to the ORM framework.
